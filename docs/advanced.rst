@@ -11,7 +11,7 @@ configuration.
 .. configuration-block::
 
     .. code-block:: yaml
-
+    
         # app/config/config.yml
         # (or config/packages/stof_doctrine_extensions.yaml if you use Flex)
         stof_doctrine_extensions:
@@ -37,3 +37,24 @@ configuration.
                 />
             </stof-doctrine-extensions:config>
         </container>
+
+    .. code-block:: php
+        // app/config/config.php
+        use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+        
+        return static function (ContainerConfigurator $containerConfigurator): void {
+            $containerConfigurator->extension('stof_doctrine_extensions', [
+                'class' => [
+                    'tree' => 'MyBundle\TreeListener',
+                    'timestampable' => 'MyBundle\TimestampableListener',
+                    'blameable' => null,
+                    'sluggable' => null,
+                    'translatable' => null,
+                    'loggable' => null,
+                    'softdeleteable' => null,
+                    'uploadable' => null,
+                ],
+            ]);
+        };
+        
+        
